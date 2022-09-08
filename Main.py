@@ -2,7 +2,6 @@
 
 import os
 import cgi
-import cgitb
 
 print_list = []
 

@@ -3,10 +3,10 @@
 import os
 import cgi
 import cgitb
-from traceback import print_list
 
 print_list = []
 
+# parses url 
 def get_args():
     arguments = cgi.FieldStorage()
     path = arguments.getfirst("dir")
@@ -46,8 +46,8 @@ def print_directery(path):
     # TODO sorted(media_list[media_list.rfind("/")])
 
 
+# Recursivly finds file names that match the search term
 def search_func(search, path):
-
     for x in os.listdir(f"/var/www/html/" + path):    
         if os.path.isdir("/var/www/html/" + path + "/" + x):
             # print (f"<h1>search = {search}, path = {path}, x = {x} ----- </h1>")

@@ -1,0 +1,26 @@
+body {
+    color: #fca311;
+    background-color: #14213d;
+}
+
+a {
+    color: #ffffff;
+    font-size: 1.5em;
+    line-height: 1.6;
+}
+
+a:hover {
+    color: #f8adff;
+} 
+
+ol li {
+    list-style-type: none;
+}
+
+
+/* 
+14213d -blue
+fca311 -yellow
+e5e5e5 -grey
+ffffff -white
+*/

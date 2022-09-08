@@ -3,6 +3,9 @@
 import os
 import cgi
 import cgitb
+from traceback import print_list
+
+print_list = []
 
 def get_args():
     arguments = cgi.FieldStorage()
@@ -31,7 +34,6 @@ def format_file_size(size):
 
 # TODO finish alphabetical sort
 def print_directery(path):
-    media_list = []
 
     for x in os.listdir(f"/var/www/html/" + path):
         if os.path.isdir("/var/www/html/" + path + "/" + x):
@@ -43,23 +45,17 @@ def print_directery(path):
     
     # TODO sorted(media_list[media_list.rfind("/")])
 
-    return media_list
-
 
 def search_func(search, path):
-    results_list = []
 
     for x in os.listdir(f"/var/www/html/" + path):    
         if os.path.isdir("/var/www/html/" + path + "/" + x):
-            print (f"<h1>search = {search}, path = {path}, x = {x} ----- </h1>")
-            # print (f"x = {x} ----- ")
-            results_list = search_func(search, path + "/" + x)
+            # print (f"<h1>search = {search}, path = {path}, x = {x} ----- </h1>")
+            search_func(search, path + "/" + x)
 
         if search in x:
             file_size = os.path.getsize(f"/var/www/html/{path}/{x}")
-            results_list.append(f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
-    
-    return results_list
+            print_list.append(f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
 
 
 def main():
@@ -86,16 +82,14 @@ def main():
     # allows navigation to the parent directory
     PD = path[:path.rfind("/")] #the ":" allows the string is a substring operation
     print (f"<li><a href=\"?dir={PD}\"> &lt&lt PD</a></li>")
-
-    files_list = []
     
     if search == "":
-        files_list = print_directery(path)
+        print_directery(path)
 
     if search != "":
-        files_list = search_func(search, path)
+        search_func(search, path)
     
-    for x in files_list:
+    for x in print_list:
                 print (x)
             
     print ("</ol>")

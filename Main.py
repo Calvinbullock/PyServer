@@ -52,7 +52,7 @@ def search_func(search, path):
             # print (f"<h1>search = {search}, path = {path}, x = {x} ----- </h1>")
             search_func(search, path + "/" + x)
 
-        if search in x:
+        if search.lower() in x.lower():
             file_size = os.path.getsize(f"/var/www/html/{path}/{x}")
             print_list.append(f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
 

@@ -88,6 +88,8 @@ def main():
     if search != "":
         search_func(search, path)
     
+    sorted(print_list)
+
     for x in print_list:
                 print (x)
             

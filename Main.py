@@ -102,5 +102,7 @@ if __name__ == '__main__':
     main()
 
 
-# run command 
+# run command:
+# ./Mian.py
+# push to server command:
 # scp /home/calvin/MainCode/PyServer/Main.py ubuntu@192.168.50.2:/usr/lib/cgi-bin/foo/

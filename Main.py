@@ -4,6 +4,8 @@ import os
 import cgi
 
 print_list = []
+root = "/home/calvin/MainCode/Self"
+# root = "/var/www/html/"
 
 # parses url 
 def get_args():
@@ -34,26 +36,24 @@ def format_file_size(size):
 # TODO finish alphabetical sort
 def print_directery(path):
 
-    for x in os.listdir(f"/var/www/html/" + path):
-        if os.path.isdir("/var/www/html/" + path + "/" + x):
+    for x in os.listdir(root + path):
+        if os.path.isdir(root + path + "/" + x):
             print (f"<li><a href=\"?dir={path}/{x}\">{x}</a></li>")
 
         else:
-            file_size = os.path.getsize(f"/var/www/html/{path}/{x}")
+            file_size = os.path.getsize(f"{root}{path}/{x}")
             print (f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
-    
-    # TODO sorted(media_list[media_list.rfind("/")])
 
 
 # Recursivly finds file names that match the search term
 def search_func(search, path):
-    for x in os.listdir(f"/var/www/html/" + path):    
-        if os.path.isdir("/var/www/html/" + path + "/" + x):
+    for x in os.listdir(root + path):    
+        if os.path.isdir(root + path + "/" + x):
             # print (f"<h1>search = {search}, path = {path}, x = {x} ----- </h1>")
             search_func(search, path + "/" + x)
 
         if search.lower() in x.lower():
-            file_size = os.path.getsize(f"/var/www/html/{path}/{x}")
+            file_size = os.path.getsize(f"{root}{path}/{x}")
             print_list.append(f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
 
 

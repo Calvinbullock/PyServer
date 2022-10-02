@@ -56,6 +56,13 @@ def search_func(search, path):
             file_size = os.path.getsize(f"{root}{path}/{x}")
             print_list.append(f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
 
+    return print_list
+
+def alpha_sort(test_list):
+    def myFunc(e):
+        return e[e.rfind('">'):]
+        
+    test_list.sort(key=myFunc)
 
 def main():
     css = "body {color: #fca311; background-color: #14213d;} a {color: #ffffff; font-size: 1.5em; line-height: 1.6;} a:hover {color: #f8adff}  ol li {list-style-type: none;}"
@@ -88,7 +95,7 @@ def main():
     if search != "":
         search_func(search, path)
     
-    sorted(print_list)
+    alpha_sort(print_list)
 
     for x in print_list:
                 print (x)

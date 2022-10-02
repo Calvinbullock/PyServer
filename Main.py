@@ -73,7 +73,7 @@ def main():
     print (f"<style>{css}</style>")
     print ("<html>")
     print ("<head>")
-    print ("<title>Hello World - First CGI Program</title>")
+    print ("<title>Index - Cal</title>")
     print ("</head>")
     print ("<body>")
     print ("<form action=\"?\" method=\"GET\">")

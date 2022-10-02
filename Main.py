@@ -42,7 +42,7 @@ def print_directery(path):
 
         else:
             file_size = os.path.getsize(f"{root}{path}/{x}")
-            print (f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
+            print_list.append(f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
 
 
 # Recursivly finds file names that match the search term

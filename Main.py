@@ -3,9 +3,8 @@
 import os
 import cgi
 
-print_list = []
-root = "/home/calvin/MainCode/Self"
-# root = "/var/www/html/"
+# root = "/home/calvin/MainCode/Self"
+root = "/var/www/html/"
 
 # parses url 
 def get_args():
@@ -33,20 +32,24 @@ def format_file_size(size):
   return f"{round(size, 2)} {units[unit]}"
 
 
-# TODO finish alphabetical sort
 def print_directery(path):
+    print_list = []
 
     for x in os.listdir(root + path):
         if os.path.isdir(root + path + "/" + x):
-            print (f"<li><a href=\"?dir={path}/{x}\">{x}</a></li>")
+            print_list.append(f"<li><a href=\"?dir={path}/{x}\">{x}</a></li>")
 
         else:
             file_size = os.path.getsize(f"{root}{path}/{x}")
             print_list.append(f"<li><a href=\"{path}/{x}\">{x} &#9 | &#9 {format_file_size(file_size)}</a></li>")
+    
+    return print_list
 
 
 # Recursivly finds file names that match the search term
 def search_func(search, path):
+    print_list = []
+
     for x in os.listdir(root + path):    
         if os.path.isdir(root + path + "/" + x):
             # print (f"<h1>search = {search}, path = {path}, x = {x} ----- </h1>")
@@ -66,8 +69,8 @@ def alpha_sort(test_list):
 
 def main():
     css = "body {color: #fca311; background-color: #14213d;} a {color: #ffffff; font-size: 1.5em; line-height: 1.6;} a:hover {color: #f8adff}  ol li {list-style-type: none;}"
-    
     path, search = get_args()
+    print_list = []
 
     print ("Content-type:text/html\n\n")
     print (f"<style>{css}</style>")
@@ -90,10 +93,10 @@ def main():
     print (f"<li><a href=\"?dir={PD}\"> &lt&lt PD</a></li>")
     
     if search == "":
-        print_directery(path)
+        print_list = print_directery(path)
 
     if search != "":
-        search_func(search, path)
+        print_list = search_func(search, path)
     
     alpha_sort(print_list)
 
@@ -107,7 +110,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
 # run command:
 # ./Mian.py

@@ -2,6 +2,9 @@
 This is a cgi server for my home network and files.
 
 Features:
-- Serve web pages and files from your home network
+- Interact with Apachi web servers
 - File tree search
-- Alphabatized sorting
+- Alphabetized sorting
+
+# Apache and CGI setup and docs:
+https://httpd.apache.org/docs/2.4/howto/cgi.html

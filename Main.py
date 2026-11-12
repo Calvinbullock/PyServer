@@ -6,19 +6,12 @@ import cgi
 # root = "/home/calvin/MainCode/Self"
 root = "/var/www/html/"
 
-# parses url 
+# parses url
 def get_args():
-    arguments = cgi.FieldStorage()
-    path = arguments.getfirst("dir")
-    if not path:
-        path = ""
-
-    search = arguments.getfirst("search")
-    if not search:
-        search = ""
-
+    params = parse_qs(os.environ.get("QUERY_STRING", ""))
+    path = params.get("dir", [""])[0]
+    search = params.get("search", [""])[0]
     return path, search
-
 
 # Converts bytes to needed unit
 def format_file_size(size):
